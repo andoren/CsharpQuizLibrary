@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CsharpQuizLibrary.Dao
 {
-    class TemporaryQuizDao : IQuizDao
+     public class TemporaryQuizDao : IQuizDao
     {
   
         private static readonly Random rnd = new Random();

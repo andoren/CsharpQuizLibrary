@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CsharpQuizLibrary.Services.Interfaces
 {
-    interface IQuizService
+    public interface IQuizService
     {
         Quiz AddQuiz(Quiz newQuiz);
         Quiz ModifyQuiz(Quiz quiz);

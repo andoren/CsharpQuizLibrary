@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CsharpQuizLibrary.Dao.Interfaces
 {
-    interface IQuizDao
+    public interface IQuizDao
     {
         Quiz AddQuiz(Quiz newQuiz);
         Quiz ModifyQuiz(Quiz quiz);

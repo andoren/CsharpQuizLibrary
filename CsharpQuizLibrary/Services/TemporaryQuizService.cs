@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CsharpQuizLibrary.Services
 {
-    class TemporaryQuizService : IQuizService
+    public class TemporaryQuizService : IQuizService
     {
         public TemporaryQuizService(IQuizDao dao)
         {
