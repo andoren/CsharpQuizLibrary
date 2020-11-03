@@ -33,7 +33,7 @@ namespace CsharpQuizLibrary.Models
             {
                 return _question;
             }
-            private set
+             set
             {
                 _question = value;
             }
@@ -44,7 +44,7 @@ namespace CsharpQuizLibrary.Models
             {
                 return _explanation;
             }
-            private set
+             set
             {
                 _explanation = value;
             }
