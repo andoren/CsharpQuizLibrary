@@ -10,15 +10,15 @@ namespace CsharpQuizLibrary.Models
         int _id;
         string _explanation;
         string[] _answers;
-        string _corretAnswer;
+        string _correctAnswer;
 
-        public Quiz(int id, string question, string explanation, string[] answers, string corretAnswer)
+        public Quiz(int id, string question, string explanation, string[] answers, string correctAnswer)
         {
             _question = question ?? throw new ArgumentNullException(nameof(question));
             _id = id;
             _explanation = explanation ?? throw new ArgumentNullException(nameof(explanation));
             _answers = answers ?? throw new ArgumentNullException(nameof(answers));
-            _corretAnswer = corretAnswer ?? throw new ArgumentNullException(nameof(corretAnswer));
+            _correctAnswer = correctAnswer ?? throw new ArgumentNullException(nameof(correctAnswer));
         }
 
 
@@ -65,11 +65,11 @@ namespace CsharpQuizLibrary.Models
         {
             get
             {
-                return _corretAnswer;
+                return _correctAnswer;
             }
             set
             {
-                _corretAnswer = value;
+                _correctAnswer = value;
             }
         }
     }
