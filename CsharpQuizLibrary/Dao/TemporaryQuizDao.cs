@@ -36,9 +36,9 @@ namespace CsharpQuizLibrary.Dao
 
         public bool DeleteQuiz(int quizId)
         {
-            int countBeforeDelete = tempDb.Count;
-            tempDb.RemoveAt(quizId - 1); 
-            return countBeforeDelete != tempDb.Count;
+            Quiz quizToRemove = GetQuizById(quizId);
+            tempDb.Remove(quizToRemove);
+            return true;
         }
 
         public Quiz GetQuizById(int id)
@@ -61,11 +61,19 @@ namespace CsharpQuizLibrary.Dao
 
         public Quiz ModifyQuiz(Quiz quiz)
         {
-            Quiz quizToModify = tempDb.Where(x=> x.Id == quiz.Id).FirstOrDefault();
+
+            Quiz quizToModify = GetQuizById(quiz.Id);
             quizToModify.Answers = quiz.Answers;
             quizToModify.CorrectAnswer= quiz.CorrectAnswer;
             quizToModify.Explanation = quiz.Explanation;
-            quizToModify.Question = quiz.Question;
+            if (!quizToModify.Question.Equals(quiz.Question)) {
+                if (tempDb.Where(q => q.Id != quiz.Id && q.Question.ToLower().Equals(quiz.Question.ToLower())).FirstOrDefault() != null)
+                {
+                    throw new DuplicateQuizException($"This question has been added to the DB already:  {quiz.Question}");
+                }
+                quizToModify.Question = quiz.Question;
+            }
+            
             return quiz;
         }
     }
