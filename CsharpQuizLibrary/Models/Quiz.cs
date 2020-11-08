@@ -11,7 +11,10 @@ namespace CsharpQuizLibrary.Models
         string _explanation;
         string[] _answers;
         string _correctAnswer;
+        public Quiz()
+        {
 
+        }
         public Quiz(int id, string question, string explanation, string[] answers, string correctAnswer)
         {
             _question = question ?? throw new ArgumentNullException(nameof(question));
@@ -23,7 +26,7 @@ namespace CsharpQuizLibrary.Models
         public int Id
         {
             get { return _id; }
-            private set { _id = value; }
+             set { _id = value; }
         }
         public string Question
         {

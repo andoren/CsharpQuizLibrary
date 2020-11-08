@@ -12,7 +12,7 @@ namespace CsharpQuizLibrary.Dao
     {
   
         private static readonly Random rnd = new Random();
-        private List<Quiz> tempDb = new List<Quiz>() {
+        private static List<Quiz> tempDb = new List<Quiz>() {
              new Quiz(1, "Question" + 1, "Explanation" + 1, new string[4] { "Answer1", "Answer2", "Answer3", "Answer4" }, "Answer" + rnd.Next(1, 4)),
              new Quiz(2, "Question" + 2, "Explanation" + 2, new string[4] { "Answer1", "Answer2", "Answer3", "Answer4" }, "Answer" + rnd.Next(1, 4)),
              new Quiz(3, "Question" + 3, "Explanation" + 3, new string[4] { "Answer1", "Answer2", "Answer3", "Answer4" }, "Answer" + rnd.Next(1, 4)),
@@ -23,9 +23,15 @@ namespace CsharpQuizLibrary.Dao
         };
         public Quiz AddQuiz(Quiz newQuiz)
         {
-            Quiz quiz = new Quiz(tempDb.Count + 1, newQuiz.Question, newQuiz.Explanation, newQuiz.Answers, newQuiz.CorrectAnswer);
-            
-            return quiz;
+            if (tempDb.Where(quiz=> quiz.Question.ToLower().Equals(newQuiz.Question.ToLower())).FirstOrDefault() != null) {
+                throw new DuplicateQuizException($"This question has been added to the DB already:  {newQuiz.Question}");
+            }
+            else {
+                newQuiz.Id = tempDb.Count + 1;
+                tempDb.Add(newQuiz);
+                return tempDb.Last();
+            }
+           
         }
 
         public bool DeleteQuiz(int quizId)
@@ -37,7 +43,7 @@ namespace CsharpQuizLibrary.Dao
 
         public Quiz GetQuizById(int id)
         {
-            Quiz quiz = tempDb.Where(quiz => quiz.Id == id).First();
+            Quiz quiz = tempDb.Where(quiz => quiz.Id == id).FirstOrDefault();
             if (quiz == null) throw new QuizNotFoundException($"Quiz cannot be found by this ID: {id}");
             else return quiz;
         }
