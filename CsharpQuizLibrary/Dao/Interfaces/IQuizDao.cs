@@ -11,5 +11,6 @@ namespace CsharpQuizLibrary.Dao.Interfaces
         Quiz ModifyQuiz(Quiz quiz);
         Boolean DeleteQuiz(int quizId);
         IEnumerable<Quiz> GetRandomQuizzes(int count);
+        Quiz GetQuizById(int id);
     }
 }

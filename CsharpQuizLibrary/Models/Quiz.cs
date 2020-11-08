@@ -20,8 +20,6 @@ namespace CsharpQuizLibrary.Models
             _answers = answers ?? throw new ArgumentNullException(nameof(answers));
             _correctAnswer = correctAnswer ?? throw new ArgumentNullException(nameof(correctAnswer));
         }
-
-
         public int Id
         {
             get { return _id; }

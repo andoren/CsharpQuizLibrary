@@ -1,5 +1,6 @@
 ﻿using CsharpQuizLibrary.Dao.Interfaces;
 using CsharpQuizLibrary.Models;
+using CsharpQuizLibrary.Models.Exceptions.QuizExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,13 @@ namespace CsharpQuizLibrary.Dao
             int countBeforeDelete = tempDb.Count;
             tempDb.RemoveAt(quizId - 1); 
             return countBeforeDelete != tempDb.Count;
+        }
+
+        public Quiz GetQuizById(int id)
+        {
+            Quiz quiz = tempDb.Where(quiz => quiz.Id == id).First();
+            if (quiz == null) throw new QuizNotFoundException($"Quiz cannot be found by this ID: {id}");
+            else return quiz;
         }
 
         public IEnumerable<Quiz> GetRandomQuizzes(int count)

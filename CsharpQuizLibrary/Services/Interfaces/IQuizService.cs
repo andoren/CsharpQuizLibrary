@@ -11,6 +11,6 @@ namespace CsharpQuizLibrary.Services.Interfaces
         Quiz ModifyQuiz(Quiz quiz);
         Boolean DeleteQuiz(int quizId);
         IEnumerable<Quiz> GetRandomQuizzes(int count);
-        
+        Quiz GetQuizById(int id);
     }
 }

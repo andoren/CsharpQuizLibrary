@@ -33,5 +33,10 @@ namespace CsharpQuizLibrary.Services
         {
             return dao.ModifyQuiz(quiz);
         }
+
+        public Quiz GetQuizById(int id)
+        {
+            return dao.GetQuizById(id);
+        }
     }
 }
